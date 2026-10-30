@@ -1,0 +1,12 @@
+# Ambiente Python
+.venv/
+__pycache__/
+*.pyc
+
+# Editor
+.vscode/
+
+# Arquivos temporários gerados pelo scraper
+debug_*.png
+data/scraper.log
+data/abort.flag

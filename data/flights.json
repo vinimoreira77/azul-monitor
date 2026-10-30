@@ -1,0 +1,58 @@
+{
+  "2027-05-01": {
+    "date": "2027-05-01",
+    "points": 63500,
+    "departure": "13:00",
+    "arrival": "16:30",
+    "airline": "Azul",
+    "timestamp": "2026-10-29T22:34:52.787647"
+  },
+  "2027-05-02": {
+    "date": "2027-05-02",
+    "points": 63500,
+    "departure": "13:00",
+    "arrival": "16:16",
+    "airline": "Azul",
+    "timestamp": "2026-10-29T22:35:05.777215"
+  },
+  "2027-05-03": {
+    "date": "2027-05-03",
+    "points": 72000,
+    "departure": "13:00",
+    "arrival": "16:16",
+    "airline": "Azul",
+    "timestamp": "2026-10-29T22:35:20.600692"
+  },
+  "2027-05-04": {
+    "date": "2027-05-04",
+    "points": 67500,
+    "departure": "13:00",
+    "arrival": "16:16",
+    "airline": "Azul",
+    "timestamp": "2026-10-29T22:35:35.195041"
+  },
+  "2027-05-05": {
+    "date": "2027-05-05",
+    "points": 63500,
+    "departure": "13:00",
+    "arrival": "16:16",
+    "airline": "Azul",
+    "timestamp": "2026-10-29T22:35:49.093794"
+  },
+  "2027-05-06": {
+    "date": "2027-05-06",
+    "points": 63500,
+    "departure": "13:00",
+    "arrival": "16:16",
+    "airline": "Azul",
+    "timestamp": "2026-10-29T22:36:02.365675"
+  },
+  "2027-05-07": {
+    "date": "2027-05-07",
+    "points": 63500,
+    "departure": "13:00",
+    "arrival": "16:16",
+    "airline": "Azul",
+    "timestamp": "2026-10-29T22:36:14.768422"
+  }
+}

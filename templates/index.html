@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azul Monitor - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-blob blob-1"></div>
+    <div class="background-blob blob-2"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-plane-departure"></i>
+                <h1>Azul Monitor</h1>
+            </div>
+            <div class="controls">
+                <div id="status-badge" class="badge idle"><i class="fa-solid fa-power-off"></i> Status: Inativo</div>
+                <button id="refresh-btn" class="btn btn-secondary">
+                    <i class="fa-solid fa-arrows-rotate"></i> Atualizar
+                </button>
+                <button id="abort-btn" class="btn btn-danger" style="display: none;">
+                    <i class="fa-solid fa-stop"></i> Abortar
+                </button>
+                <button id="run-scraper-btn" class="btn btn-primary">
+                    <i class="fa-solid fa-play"></i> Iniciar Varredura
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="config-panel glass">
+                <h2><i class="fa-solid fa-sliders"></i> Configurar Busca</h2>
+                <div class="config-grid">
+                    <div class="input-group">
+                        <label>Origem</label>
+                        <input type="text" id="input-origin" value="GRU" maxlength="3" list="airports" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                    <div class="input-group">
+                        <label>Destino</label>
+                        <input type="text" id="input-dest" value="AEP" maxlength="3" list="airports" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                    
+                    <datalist id="airports">
+                        <!-- Principais Brasil -->
+                        <option value="VCP">Campinas, SP (VCP)</option>
+                        <option value="GRU">Guarulhos, SP (GRU)</option>
+                        <option value="CGH">Congonhas, SP (CGH)</option>
+                        <option value="CNF">Belo Horizonte, MG (CNF)</option>
+                        <option value="REC">Recife, PE (REC)</option>
+                        <option value="SDU">Rio de Janeiro, SDU (SDU)</option>
+                        <option value="GIG">Rio de Janeiro, Galeão (GIG)</option>
+                        <option value="BSB">Brasília, DF (BSB)</option>
+                        <option value="POA">Porto Alegre, RS (POA)</option>
+                        <option value="CWB">Curitiba, PR (CWB)</option>
+                        <option value="SSA">Salvador, BA (SSA)</option>
+                        <option value="FOR">Fortaleza, CE (FOR)</option>
+                        
+                        <!-- América do Sul (Azul + Parceiros) -->
+                        <option value="EZE">Buenos Aires - Ezeiza, Argentina (EZE)</option>
+                        <option value="AEP">Buenos Aires - Aeroparque, Argentina (AEP)</option>
+                        <option value="BRC">Bariloche, Argentina (BRC)</option>
+                        <option value="COR">Córdoba, Argentina (COR)</option>
+                        <option value="MDZ">Mendoza, Argentina (MDZ)</option>
+                        <option value="MVD">Montevidéu, Uruguai (MVD)</option>
+                        <option value="PDP">Punta del Este, Uruguai (PDP)</option>
+                        <option value="SCL">Santiago, Chile (SCL)</option>
+                        <option value="ASU">Assunção, Paraguai (ASU)</option>
+                        <option value="VVI">Santa Cruz de la Sierra, Bolívia (VVI)</option>
+                        <option value="LPB">La Paz, Bolívia (LPB)</option>
+                        <option value="LIM">Lima, Peru (LIM)</option>
+                        <option value="CUZ">Cusco, Peru (CUZ)</option>
+                        <option value="BOG">Bogotá, Colômbia (BOG)</option>
+                        <option value="MDE">Medellín, Colômbia (MDE)</option>
+                        <option value="CTG">Cartagena, Colômbia (CTG)</option>
+                        <option value="UIO">Quito, Equador (UIO)</option>
+                        
+                        <!-- Américas (Caribe, Central, Norte) -->
+                        <option value="CUR">Curaçao (CUR)</option>
+                        <option value="PTY">Cidade do Panamá, Panamá (PTY)</option>
+                        <option value="CUN">Cancún, México (CUN)</option>
+                        <option value="MEX">Cidade do México, México (MEX)</option>
+                        <option value="MCO">Orlando, EUA (MCO)</option>
+                        <option value="FLL">Fort Lauderdale, EUA (FLL)</option>
+                        <option value="MIA">Miami, EUA (MIA)</option>
+                        <option value="JFK">Nova York - JFK, EUA (JFK)</option>
+                        <option value="EWR">Newark - NY, EUA (EWR)</option>
+                        <option value="IAH">Houston, EUA (IAH)</option>
+                        <option value="ORD">Chicago, EUA (ORD)</option>
+                        
+                        <!-- Europa (Azul + TAP + Parceiros) -->
+                        <option value="LIS">Lisboa, Portugal (LIS)</option>
+                        <option value="OPO">Porto, Portugal (OPO)</option>
+                        <option value="ORY">Paris - Orly, França (ORY)</option>
+                        <option value="CDG">Paris - Charles de Gaulle, França (CDG)</option>
+                        <option value="LHR">Londres - Heathrow, Reino Unido (LHR)</option>
+                        <option value="MAD">Madri, Espanha (MAD)</option>
+                        <option value="BCN">Barcelona, Espanha (BCN)</option>
+                        <option value="FCO">Roma - Fiumicino, Itália (FCO)</option>
+                        <option value="MXP">Milão - Malpensa, Itália (MXP)</option>
+                        <option value="FRA">Frankfurt, Alemanha (FRA)</option>
+                    </datalist>
+
+                    <div class="input-group">
+                        <label>Data Inicial</label>
+                        <input type="date" id="input-start">
+                    </div>
+                    <div class="input-group">
+                        <label>Data Final</label>
+                        <input type="date" id="input-end">
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card glass">
+                    <i class="fa-solid fa-calendar-days stat-icon"></i>
+                    <div class="stat-info">
+                        <h3>Dias Monitorados</h3>
+                        <p id="stat-days">0</p>
+                    </div>
+                </div>
+                <div class="stat-card glass highlight">
+                    <i class="fa-solid fa-tag stat-icon"></i>
+                    <div class="stat-info">
+                        <h3>Menor Preço</h3>
+                        <p id="stat-lowest">0 pts</p>
+                    </div>
+                </div>
+                <div class="stat-card glass">
+                    <i class="fa-solid fa-plane-arrival stat-icon"></i>
+                    <div class="stat-info">
+                        <h3>Melhor Data</h3>
+                        <p id="stat-best-date">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flights-container glass">
+                <div class="flights-header">
+                    <h2>Voos Encontrados <span id="route-title">(GRU ➔ AEP)</span></h2>
+                    <div class="filters">
+                        <select id="sort-select">
+                            <option value="date">Ordenar por Data</option>
+                            <option value="price">Ordenar por Preço (Menor)</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="flights-grid" class="flights-grid">
+                    <!-- Voos serão injetados via JS -->
+                    <div class="loading-state">
+                        <i class="fa-solid fa-spinner fa-spin"></i> Carregando voos...
+                    </div>
+                </div>
+            </div>
+
+            <div class="raw-data-container glass">
+                <div class="raw-data-header">
+                    <h2><i class="fa-solid fa-code"></i> Raw Data (flights.json)</h2>
+                    <button id="clear-data-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-trash"></i> Limpar Dados</button>
+                </div>
+                <pre id="raw-json-box">{}</pre>
+            </div>
+
+            <div class="raw-data-container glass">
+                <div class="raw-data-header">
+                    <h2><i class="fa-solid fa-terminal"></i> Logs do Scraper</h2>
+                    <button id="clear-log-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-eraser"></i> Limpar Logs</button>
+                </div>
+                <pre id="log-box">Aguardando execução...</pre>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">Notificação</div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

@@ -1,11 +1,7 @@
 name: Monitorar Azul Pelo Mundo
 
 on:
-  schedule:
-    # Roda todo dia às 10:00 AM UTC (ajuste conforme necessário)
-    - cron: '0 10 * * *'
-  
-  # Permite rodar manualmente via GitHub UI
+  # Execução diária automática desativada (permite rodar apenas manualmente via GitHub UI)
   workflow_dispatch:
 
 jobs:
